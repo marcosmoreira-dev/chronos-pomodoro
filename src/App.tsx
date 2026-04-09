@@ -2,7 +2,7 @@ import './styles/theme.css'
 import './styles/global.css'
 
 import { Container } from './components/Container'
-import { Heading } from './components/Heading'
+import { Menu } from './components/Menu'
 import { Logo } from './components/Logo'
 
 export function App() {
@@ -13,7 +13,7 @@ export function App() {
       </Container>
 
       <Container>
-        <Heading>MENU</Heading>
+        <Menu />
       </Container>
     </>
     )
