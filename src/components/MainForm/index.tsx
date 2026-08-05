@@ -2,30 +2,26 @@ import { PlayCircleIcon } from "lucide-react";
 import { Cycles } from "../Cycles";
 import { DefaultInput } from "../DefaultInput";
 import { DefaultButton } from "../DefaultButton";
-import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { useRef } from 'react'
 
 export function MainForm() {
-  const { setState } = useTaskContext()
-  
-  function handleClick(){
-    setState(prevState => {
-      return {
-        ...prevState,
-        formattedSecondsRemaining: '21:00',
-      }
-    })
+  const taskNameInput = useRef<HTMLInputElement>(null)
+
+  function handleCreateNewTask(event: React.SubmitEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+
   }
 
-
   return (
-      <form className="form" action="">
-          <button onClick={handleClick} type="button">Clicar</button>
+      <form onSubmit={handleCreateNewTask} className="form" action="">
           <div className="formRow">
             <DefaultInput 
             labelText='task'
             id='meuInput' 
             type="text"
             placeholder='Digite algo'
+            ref={taskNameInput}
             />
           </div>
 
