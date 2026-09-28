@@ -89,13 +89,17 @@ export function MainForm() {
           )}
 
           <div className="formRow">
-            {!state.activeTask ? (
+            {!state.activeTask && (
             <DefaultButton 
             aria-label='Iniciar nova tarefa'
             title="Iniciar nova tarefa" 
             type='submit' 
-            icon={<PlayCircleIcon />} />
-            ) : (
+            icon={<PlayCircleIcon />} 
+            key='botao_submit'
+            />
+            )} 
+            
+            {!!state.activeTask && (
             <DefaultButton 
             aria-label='Interromper tarefa atual'
             title="Interromper tarefa atual" 
@@ -103,6 +107,7 @@ export function MainForm() {
             color="red"
             icon={<StopCircleIcon />} 
             onClick={handleInterruptTask}
+            key='botao_button'
             />
             
             )}
