@@ -9,13 +9,30 @@ type TaskContextProviderProps = {
 export function TaskContextProvider({ children }: TaskContextProviderProps){
   const [state, setState] = useState(initialTaskState)
 
-  useEffect(()=> {
-    console.log(state)
-  }, [state])
+  const [numero, dispatch] = useReducer((state, action) => {
+
+    switch (action) {
+      case 'INCREMENT':
+        return state + 1;
+      case 'DECREMENT':
+        return state - 1;
+      case 'INITIAL_STATE':
+        return 0;
+    }
+
+    return state; // estado atual (não altera)
+  }, 0);
+
+  // useEffect(()=> {
+  //   console.log(state)
+  // }, [state])
 
   return (
   <TaskContext.Provider value={{ state, setState }}>
-    {children}
+    <h1>O número é {numero}</h1>
+    <button onClick={() => dispatch('INCREMENT')}>Incrementar</button>
+    <button onClick={() => dispatch('DECREMENT')}>Incrementar</button>
+    <button onClick={() => dispatch('INITIAL_STATE')}>Zerar</button>
   </TaskContext.Provider>
   )
 }
